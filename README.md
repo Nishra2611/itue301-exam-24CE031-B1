@@ -41,7 +41,3 @@ The seed script creates the demo member and trainers. Login intentionally uses t
 ## Validation
 Mongoose validation errors are mapped into a clean JSON array by the global error handler. A duplicate trainer/date/time slot is also rejected with HTTP 400.
 
-## Roll-number submission naming
-Rename the repository to `itue301-exam-[roll-number]-[batch]` before publishing the public GitHub repository.
-
-The report filename should be `[RollNo]_SetB_Report.pdf`.
