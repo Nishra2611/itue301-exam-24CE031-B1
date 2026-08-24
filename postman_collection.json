@@ -1,0 +1,38 @@
+{
+  "info": {
+    "name": "FitZone Set B API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://localhost:5000/api/v1"},
+    {"key": "token", "value": ""},
+    {"key": "trainerId", "value": ""},
+    {"key": "bookingId", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Login",
+      "request": {"method": "POST", "header": [{"key":"Content-Type","value":"application/json"}], "body":{"mode":"raw","raw":"{\n  \"email\": \"member@fitzone.com\"\n}"}, "url":{"raw":"{{baseUrl}}/auth/login","host":["{{baseUrl}}"],"path":["auth","login"]}}
+    },
+    {
+      "name": "Get Trainers",
+      "request": {"method":"GET","url":{"raw":"{{baseUrl}}/trainers","host":["{{baseUrl}}"],"path":["trainers"]}}
+    },
+    {
+      "name": "Create Booking - 201",
+      "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"trainerId\": \"{{trainerId}}\",\n  \"className\": \"Strength Basics\",\n  \"date\": \"2026-09-01\",\n  \"timeSlot\": \"06:00 PM - 07:00 PM\"\n}"},"url":{"raw":"{{baseUrl}}/bookings","host":["{{baseUrl}}"],"path":["bookings"]}}
+    },
+    {
+      "name": "My Bookings",
+      "request": {"method":"GET","header":[{"key":"Authorization","value":"Bearer {{token}}"}],"url":{"raw":"{{baseUrl}}/bookings/my","host":["{{baseUrl}}"],"path":["bookings","my"]}}
+    },
+    {
+      "name": "Update Booking Status",
+      "request": {"method":"PATCH","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"status\": \"cancelled\"\n}"},"url":{"raw":"{{baseUrl}}/bookings/{{bookingId}}/status","host":["{{baseUrl}}"],"path":["bookings","{{bookingId}}","status"]}}
+    },
+    {
+      "name": "Validation Failure",
+      "request": {"method":"POST","header":[{"key":"Content-Type","value":"application/json"},{"key":"Authorization","value":"Bearer {{token}}"}],"body":{"mode":"raw","raw":"{\n  \"trainerId\": \"{{trainerId}}\",\n  \"className\": \"\",\n  \"date\": \"2026-09-01\",\n  \"timeSlot\": \"06:00 PM - 07:00 PM\"\n}"},"url":{"raw":"{{baseUrl}}/bookings","host":["{{baseUrl}}"],"path":["bookings"]}}
+    }
+  ]
+}
